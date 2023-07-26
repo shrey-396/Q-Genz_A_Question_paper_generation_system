@@ -70,7 +70,7 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
           <li class="list-group-item"><a href='generatePaper.php'>Generate Paper</a></li>
           <li class="list-group-item"><a href='addCourse.php'>Add Course</a></li>
           <!-- <li class="list-group-item"><a href='#'>Add Setter/Moderator</a></li> -->
-          <li class="list-group-item"><a href='findPaper.php'>Download Question by ID</a></li>
+          <li class="list-group-item"><a href='findPaper.php'>Download Question Paper</a></li>
 
         </ul>
 
