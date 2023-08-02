@@ -98,9 +98,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     -->
     <div class="container">
         <div class="card card-container">
-            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            
             <center><b>Automated Question Paper Generation</b></center><br/>
-            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <img  src="https://www.ceeindia.org/images/Charusat-Logo.jpg" width="275" height="250"/>
             <p id="profile-name" class="profile-name-card"></p>
        
     
@@ -121,9 +121,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
             <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-           <!-- <a href="forget password.php">
+            <a href="forget password.php">
                 Forgot the password?
-            </a>-->
+            </a>
         </form>
 
 

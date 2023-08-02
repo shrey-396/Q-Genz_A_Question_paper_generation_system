@@ -10,7 +10,7 @@ CREATE TABLE `courses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `courses` (`id`, `courseTitle`) VALUES
-(1, 'CSE1011');
+(1, 'Cyber Security');
 
 -- --------------------------------------------------------
 
@@ -20,9 +20,8 @@ CREATE TABLE `generatedquestion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `generatedquestion` (`id`, `questionBody`) VALUES
-(1, '1. What is the full form IQAC?<br/><br/><br/><br/><br/><br/><br/><br/>'),
-(2, '1. What is the full form IQAC?<br/><br/>Implement a Singly LinkedList without using STL<br/><br/><br/><br/><br/><br/>'),
-(3, 'What is the full form IQAC?<br/><br/>Implement a Singly LinkedList without using STL<br/><br/><br/><br/><br/><br/>');
+(1, 'what is Security?'),
+(3, 'What is Malware?');
 
 -- --------------------------------------------------------
 
@@ -34,8 +33,8 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `questions` (`id`, `question`, `difficulty`, `courseName`) VALUES
-(1, 'What is the full form IQAC?', '1', 'CSE1011'),
-(2, 'Implement a Singly LinkedList without using STL', '1', 'CSE1011');
+(1, 'What is Security?', '1', 'Cyber Security'),
+(2, 'What is Malware?', '1', 'Cyber Security');
 
 -- --------------------------------------------------------
 
