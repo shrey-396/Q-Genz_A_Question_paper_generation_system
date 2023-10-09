@@ -18,13 +18,15 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
 
 <html> 
 <head>
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<title>Generate Question Paper</title>
+<title>Download Question Paper</title>
 
 <style>
         .container img {
@@ -76,9 +78,9 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
 
   <li class="list-group-item"><a href="addQuestion.php">Add Questions manually</a></li>
   <li class="list-group-item"><a href='excel.php'>Add Questions using Excel</a></li>
-  <li class="list-group-item">Generate Paper</li>
+  <li class="list-group-item"><a href="generatePaper.php">Generate Paper</a></li>
   <li class="list-group-item"><a href="addCourse.php">Add Course</a></li>
-  <li class="list-group-item"><a href='findPaper.php'>Download Question Paper</a></li>
+  <li class="list-group-item">Download Question Paper</li>
 
 </ul>
     
@@ -91,116 +93,111 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
   $errorMsg = ""; 
   $successMsg = "";
   //adding course
-  if(!empty($_POST['courseSelect'])){
-  $courseName=$_POST['courseSelect']; 
+  if(!empty($_POST['searchBox'])){
+  $searchString=$_POST['searchBox']; 
   
-  
-  //$addCourse = "INSERT INTO questions(question, difficulty, courseName) VALUES ('$question', '$difficulty', '$courseName')";
+  //$addCourse = "INSERT INTO questions(id, question, difficulty, marks, courseName) VALUES ('$id','$question', '$difficulty', '$marks', '$courseName')";
   //mysqli_query($link, $addCourse);  
 
-  $successMsg = "Successfully Generated Question Paper : ".$courseName; 
+  //$successMsg = "Successfully Generated Question Paper :"; 
 
+  $id=(int)$searchString;  
+  //printf($id); 
+  $fetchpaper=mysqli_query($link, "select questionBody from generatedquestion where id='$id'");
+  $printQues=mysqli_fetch_row($fetchpaper);
+  $fetchmarks=mysqli_query($link, "select marks from questions where id='$id'");
+  $marks=mysqli_fetch_row($fetchmarks);
+  $fetchcourse=mysqli_query($link, "select courseTitle from courses where id='$id'");
+  $courseName=mysqli_fetch_row($fetchcourse);
+  if(!empty($printQues)){
 
-  $fetchques=mysqli_query($link, "select question from questions where courseName='$courseName'");
-  while($ques=mysqli_fetch_array($fetchques)){
-
-      $ques_array[] = $ques; 
+     $successMsg = "Found!";
+     // PRINT QUESTION;
         
   }
 
-
-   // Inserting Static 
-  // Proposed Shuffle Algorithm Not implemented Yet;
-  // Array : ques_array[1][0];
-  
-  $quesBodyString = $ques_array[0][0].'<br/><br/>'.$ques_array[1][0].'<br/><br/>'.$ques_array[2][0].'<br/><br/>'.$ques_array[3][0].'<br/><br/>';
-  $addPaper = "INSERT INTO generatedquestion(questionBody) VALUES ('$quesBodyString')";
-  if(mysqli_query($link, $addPaper)){
-    printf("");
-  }
-  else{
-    printf("Question Not Available!");
+  else {
+    $successMsg = "Could not find!"; 
   }
   
-
-  }
-  else{
-    $errorMsg="";
-  }
-
-
-  $fetchlist=mysqli_query($link, "select * from courses");
-  $fetchlist1=mysqli_query($link, "select * from questions");
-  
-
+}
 
 
   ?>
 
-  <div class="col-1">
-  </div>
+ 
 
-
-  <div class="col-4">
+  <div class="col-8">
     
 <form method="POST">
-  <div class="form-group">
+  
+   <div class="form-group">
+    <label for="exampleFormControlInput1">Question ID</label>
+    <input name="searchBox" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Type unique ID">
+  </div>
    
 
-    <div class="form-group">
-    <label for="exampleFormControlSelect1">Select Course</label>
-    <select name="courseSelect" class="form-control" id="exampleFormControlSelect1">
-      <?php 
-      while($row=mysqli_fetch_array($fetchlist)){
-
-          echo '<option>'.$row['courseTitle'].'</option>'; 
     
-      }
-      ?> 
-    
-    </select>
-    </div>
-
-    <div class="form-group">
-    <label for="exampleFormControlTextarea1">Select Marks</label>
-    <select name="marksSelect" class="form-control" id="exampleFormControlTextarea1">
-      <?php 
-      
-
-          echo '<option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-               <option>5</option>
-               <option>6</option>
-               <option>7</option>
-               <option>8</option>
-               <option>9</option>
-               <option>10</option>'; 
-  
-      
-      ?> 
-    
-    </select>
-    </div>
-
-    
-
 
  
- <input value="Generate" type="submit" class="btn btn-primary"><br/><br/>
+ <input value="Find" type="submit" class="btn btn-primary"><br/><br/>
   <div class="alert alert-success" role="alert">
    <?php echo $errorMsg; ?> 
    <?php echo $successMsg; ?> 
   </div>
 </form>
 
+<input type="button" onclick="printDiv('questionBox')" value="PRINT" />
 
 
 
+<?php 
+if(!empty($printQues)){
 
+     $successMsg = "Found!";
+     // PRINT QUESTION;
+
+     echo '
+
+     <div id="questionBox" style="border:1px solid black;"> 
+
+     <center> 
+     <h2>Charusat University</h2>
+     <h5>Department of Information and Technology</h5> 
+     <h5>External Examination</h5> 
+      </center>
+
+     <br/><br/><hr/><br/><br/><br/>
+     <font size="5">
+     <div style="margin-left:80px;">
+     '.$printQues[0].' <br/>
+     </div>
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+     <center>===== THE END ====</center>
+     </div></font>
+
+     ';
+     //print_r($printQues);
+        
+  }
+
+?>
+
+  
+  <script>
+    function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}</script>
   </div>
 
+ 
 
 
 
@@ -219,7 +216,7 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
    
 
        
-    
+
 
 </body>
 </html> 

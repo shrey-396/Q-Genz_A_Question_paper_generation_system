@@ -26,6 +26,14 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
 
   <title>Add Question</title>
 
+  <style>
+        .container img {
+            float: right;
+            max-width: 50%; /* Adjust the width as needed */
+            height: auto;
+        }
+    </style>
+
 </head>
 <body>
   <div class='container'>
@@ -50,8 +58,11 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
 
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
-        <h1 class="display-4">Charusat University</h1>
-        <p class="lead">Automated Question Paper Generation System</p>
+      <h1 class="display-5">Q-Genz</h1>
+        <p class="lead">Automated Question Paper Generator</p>
+        <div class="container" >
+        <img  src="Q-Genz_logo1.png" width="150" height="150"/>
+      </div>
       </div>
     </div>
 
@@ -63,7 +74,8 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
 
         <ul class="list-group">
 
-          <li class="list-group-item">Add Questions</li>
+          <li class="list-group-item">Add Questions manually</li>
+          <li class="list-group-item"><a href='excel.php'>Add Questions using Excel</a></li>
           <li class="list-group-item"><a href='generatePaper.php'>Generate Paper</a></li>
           <li class="list-group-item"><a href="addCourse.php">Add Course</a></li>
           <li class="list-group-item"><a href='findPaper.php'>Download Question Paper</a></li>
@@ -81,13 +93,14 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
       if(!empty($_POST['questionDet'])){
         $question=$_POST['questionDet']; 
         $difficulty=$_POST['difficultySet'];
+        $marks = $_POST['marks'];
         $courseName = $_POST['courseSelect']; 
-        $addCourse = "INSERT INTO questions(question, difficulty, courseName) VALUES ('$question', '$difficulty', '$courseName')";
+        $addCourse = "INSERT INTO questions(question, difficulty, marks, courseName) VALUES ('$question', '$difficulty', '$marks', '$courseName')";
         mysqli_query($link, $addCourse);  
         $successMsg = "Successfully Added Question to: ".$courseName; 
       }
       else{
-        $errorMsg="Fill Course name field";
+        $errorMsg="";
       }
 
 
@@ -122,6 +135,10 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
               </select>
             </div>
 
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Marks</label>
+              <textarea name="marks" class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+           </div>
 
             <div class="form-group">
               <label for="exampleFormControlSelect1">Difficulty Set</label>
@@ -129,9 +146,10 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
                <option>1</option>
                <option>2</option>
                <option>3</option>
-               <option>4</option>
              </select>
            </div>
+
+        
 
            <div class="form-group">
             <label for="exampleFormControlTextarea1">Question</label>
@@ -145,30 +163,18 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
            <?php echo $errorMsg; ?> 
            <?php echo $successMsg; ?> 
          </div>
+         
+
        </form>
-
-
-
+     
      </div>
 
-
-
-
-
-
-
    </div>
-
-
 
    <?php include('footer.php'); ?> 
 
 
  </div>
-
-
-
-
 
 
 </body>

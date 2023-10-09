@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Question Paper Automation System</title>
+<title>Q-Genz</title>
 <link href="css/main.css" rel="stylesheet">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -98,9 +98,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     -->
     <div class="container">
         <div class="card card-container">
-            
-            <center><b>Automated Question Paper Generation</b></center><br/>
-            <img  src="https://www.ceeindia.org/images/Charusat-Logo.jpg" width="275" height="250"/>
+
+            <center><b>Automated Question Paper Generator</b></center><br/>
+            <center><img  src="Q-Genz_logo1.png" width="250" height="230"/></center>
             <p id="profile-name" class="profile-name-card"></p>
        
     

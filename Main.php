@@ -26,6 +26,14 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
 
   <title>Dashboard</title>
 
+  <style>
+        .container img {
+            float: right;
+            max-width: 50%; /* Adjust the width as needed */
+            height: auto;
+        }
+    </style>
+
 </head>
 <body>
   <div class='container'>
@@ -52,9 +60,12 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
     </nav>
 
     <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Charusat University</h1>
-        <p class="lead">Automated Question Paper Generation System</p>
+      <div class="container" >
+        <h1 class="display-5">Q-Genz</h1>
+        <p class="lead">Automated Question Paper Generator</p>
+        <div class="container" >
+        <img  src="Q-Genz_logo1.png" width="150" height="150"/>
+      </div>
       </div>
     </div>
 
@@ -66,7 +77,8 @@ $uinfo=mysqli_fetch_assoc($ses_sql);
 
         <ul class="list-group">
 
-          <li class="list-group-item"><a href='addQuestion.php'>Add Questions</a></li>
+          <li class="list-group-item"><a href='addQuestion.php'>Add Questions manually</a></li>
+          <li class="list-group-item"><a href='excel.php'>Add Questions using Excel</a></li>
           <li class="list-group-item"><a href='generatePaper.php'>Generate Paper</a></li>
           <li class="list-group-item"><a href='addCourse.php'>Add Course</a></li>
           <!-- <li class="list-group-item"><a href='#'>Add Setter/Moderator</a></li> -->

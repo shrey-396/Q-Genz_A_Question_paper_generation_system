@@ -43,6 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <div class="container">
         <div class="card card-container">
+
+        <center><b>Automated Question Paper Generator</b></center><br/>
+        <center><img  src="Q-Genz_logo1.png" width="250" height="230"/></center>
+            <p id="profile-name" class="profile-name-card"></p>
+
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <label for="username">Username</label><br>
     <input type="text" name="username" class="form-control" required><br>
